@@ -1,0 +1,23 @@
+{
+  "name": "unixtime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel ./src/unixtime-converter.html  ./src/units-converter.html"
+  },
+  "author": "na2hiro",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.9.16",
+    "@types/react-dom": "^16.9.4",
+    "numeral": "^2.0.6",
+    "parcel": "^1.12.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  }
+}
