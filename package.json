@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel ./src/unixtime-converter.html  ./src/units-converter.html"
+    "start": "parcel ./src/unixtime.html  ./src/units.html"
   },
   "author": "na2hiro",
   "license": "ISC",

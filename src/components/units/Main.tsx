@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, FunctionComponent } from "react";
-import "./MainLength.css";
+import "./Main.css";
 import numeral from "numeral";
 
 let id: number; // Should be per component
@@ -43,7 +43,7 @@ const times: Unit[] = [
     {name: "millisecond", unit: "ms", amount: 0.001},
 ]
 
-const MainLength = () => {
+const Main = () => {
     const [text, setText] = useState(``);
     const onChange = useCallback((e)=>{
         setText(e.target.value);
@@ -119,4 +119,4 @@ const parse = (text: string) => {
     };
 }
 
-export default MainLength;
+export default Main;
