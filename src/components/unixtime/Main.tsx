@@ -1,29 +1,28 @@
 import React, { useState, useCallback, useEffect } from "react";
 import DateTimeInput from "./DateTimeInput";
+import UnixTimeInput from "./UnixTimeInput";
 import "./Main.css";
 
-let id: number; // Should be per component
+let id: number | undefined = -1; // Should be per component
 
 const Main = () => {
-    const [text, setText] = useState(`${Math.floor(new Date().getTime()/1000)}`);
-    const onChange = useCallback((e)=>{
-        setText(e.target.value);
-    }, [setText]);
+    const [unixTime, setUnixTime] = useState(Math.floor(new Date().getTime()/1000));
+
     const onFirstInteraction = useCallback(() => {
-        if(id) {
+        if (id > 0) {
             cancelAnimationFrame(id);
-            id = null;
         }
+        id = undefined;
     }, []);
 
     useEffect(() => {
-        let currentTime;
+        let currentTime: number;
         id = requestAnimationFrame(animate);
         function animate () {
             const newTime = Math.floor(new Date().getTime()/1000);
             if(currentTime!=newTime) {
                 currentTime = newTime;
-                setText(`${newTime}`);
+                setUnixTime(newTime);
             }
             id = requestAnimationFrame(animate);
         }
@@ -33,24 +32,15 @@ const Main = () => {
         }
     }, [])
 
-    const num = parseInt(text);
-    return <>
-        <input value={text} onChange={onChange} onMouseDown={onFirstInteraction}
-            onKeyDown={onFirstInteraction} style={{
-            width: "100%"
-        }}  placeholder="Unixtime (e.g. 1234567890)" autoFocus />
-        {isNaN(num) ?
-            "Not a number" :
-            <ul>
-                <li><DateTimeInput title="(s)" unixTimeMillis={num*1000} setUnixTimeMillis={(s)=>{
-                    setText(`${Math.floor(s/1000)}`);
-                }} /></li>
-                <li><DateTimeInput title="(ms)" unixTimeMillis={num} setUnixTimeMillis={(s)=>{
-                    setText(`${Math.floor(s)}`);
-                }} /></li>
-            </ul>
-            }
-    </>
+    return <div onMouseDown={onFirstInteraction} onKeyDown={onFirstInteraction}>
+        <UnixTimeInput unixTime={Math.floor(unixTime)} setUnixTime={setUnixTime} noInteractionYet={!isNaN(id)} />
+        <DateTimeInput title="(s)" unixTimeMillis={unixTime * 1000} setUnixTimeMillis={(s) => {
+            setUnixTime(Math.floor(s/1000));
+        }} />
+        <DateTimeInput title="(ms)" unixTimeMillis={unixTime} setUnixTimeMillis={(s)=>{
+            setUnixTime(Math.floor(s));
+        }} />
+    </div>
 }
 
 export default Main;
