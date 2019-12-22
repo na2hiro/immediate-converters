@@ -1,4 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
+import DateTimeInput from "./DateTimeInput";
+import "./Main.css";
 
 let id: number; // Should be per component
 
@@ -35,27 +37,20 @@ const Main = () => {
     return <>
         <input value={text} onChange={onChange} onMouseDown={onFirstInteraction}
             onKeyDown={onFirstInteraction} style={{
-            fontSize: "40px",
             width: "100%"
         }}  placeholder="Unixtime (e.g. 1234567890)" autoFocus />
         {isNaN(num) ?
             "Not a number" :
             <ul>
-                <li><DateDisplay name="Unixtime (s)" date={new Date(num*1000)} /></li>
-                <li><DateDisplay name="Unixtime (ms)" date={new Date(num)} /></li>
+                <li><DateTimeInput title="(s)" unixTimeMillis={num*1000} setUnixTimeMillis={(s)=>{
+                    setText(`${Math.floor(s/1000)}`);
+                }} /></li>
+                <li><DateTimeInput title="(ms)" unixTimeMillis={num} setUnixTimeMillis={(s)=>{
+                    setText(`${Math.floor(s)}`);
+                }} /></li>
             </ul>
             }
     </>
-}
-
-const DateDisplay = ({name, date}) => {
-    const wrongRange = date.getYear()>300 || date.getYear()<80;
-    return <span style={{
-        color: wrongRange ? "gray" : "black",
-        fontWeight: wrongRange ? "normal" : "bold"
-    }} title={wrongRange ? "Year looks invalid" : ""}>
-        {name}: {date.toString()}
-    </span>
 }
 
 export default Main;

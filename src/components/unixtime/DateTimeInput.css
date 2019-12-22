@@ -1,0 +1,9 @@
+.DateTimeInput, .DateTimeInput input {
+    color: black;
+    font-weight: bold;
+    font-size: 40px;
+}
+.DateTimeInput--wrong, .DateTimeInput--wrong input {
+    color: gray;
+    font-weight: normal;
+}
