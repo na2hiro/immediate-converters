@@ -1,1 +1,0 @@
-{"version":3,"sources":["Main.css"],"names":[],"mappings":"AAAA,wBACI,qBACJ","file":"units.334a05c7.css","sourceRoot":"../src","sourcesContent":["tbody tr:nth-child(2n+1) {\n    background-color: #eee\n}"]}
