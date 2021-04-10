@@ -2,11 +2,10 @@
   "name": "unixtime",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "npm run clean && parcel build ./src/unixtime.html  ./src/units.html --public-url ./",
     "clean": "rm -rf ./dist",
-    "start": "parcel ./src/unixtime.html  ./src/units.html",
+    "start": "parcel serve ./src/unixtime.html  ./src/units.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "na2hiro",
@@ -15,7 +14,7 @@
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
     "numeral": "^2.0.6",
-    "parcel": "^1.12.4",
+    "parcel": "^2.0.0-beta.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
